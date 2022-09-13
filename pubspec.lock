@@ -177,13 +177,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
-  rounded_tabbar_widget:
-    dependency: "direct main"
-    description:
-      name: rounded_tabbar_widget
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.2"
   shared_preferences:
     dependency: "direct main"
     description:
