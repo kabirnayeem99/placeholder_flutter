@@ -1,20 +1,15 @@
 // response from https://jsonplaceholder.typicode.com/users
 
 class AllUsersApiResponseDto {
-  int id = -1;
-  String name = "";
-  String username = "";
-  String email = "";
-  Address address = Address(
-    street: "",
-    suite: "",
-    city: "",
-    zipcode: "",
-    geo: Geo(lat: "", lng: ""),
-  );
-  String phone = "";
-  String website = "";
-  Company company = Company(name: "", catchPhrase: "", bs: "");
+  int id;
+
+  String name;
+  String username;
+  String email;
+  Address address;
+  String phone;
+  String website;
+  Company company;
 
   AllUsersApiResponseDto({
     required this.id,
@@ -27,41 +22,91 @@ class AllUsersApiResponseDto {
     required this.company,
   });
 
-  AllUsersApiResponseDto.fromJson(Map<String, dynamic> apiResponseJson) {
-    id = apiResponseJson['id'];
-    name = apiResponseJson['name'];
-    username = apiResponseJson['username'];
-    email = apiResponseJson['email'];
-    address = (apiResponseJson['address'] != null
-        ? Address.fromJson(apiResponseJson['address'])
-        : null)!;
-    phone = apiResponseJson['phone'];
-    website = apiResponseJson['website'];
-    company = (apiResponseJson['company'] != null
-        ? Company.fromJson(apiResponseJson['company'])
-        : null)!;
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is AllUsersApiResponseDto &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          name == other.name &&
+          username == other.username &&
+          email == other.email &&
+          address == other.address &&
+          phone == other.phone &&
+          website == other.website &&
+          company == other.company);
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      name.hashCode ^
+      username.hashCode ^
+      email.hashCode ^
+      address.hashCode ^
+      phone.hashCode ^
+      website.hashCode ^
+      company.hashCode;
+
+  @override
+  String toString() {
+    return 'AllUsersApiResponseDto{ id: $id, name: $name, username: $username, email: $email, address: $address, phone: $phone, website: $website, company: $company,}';
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['username'] = username;
-    data['email'] = email;
-    data['address'] = address.toJson();
-    data['phone'] = phone;
-    data['website'] = website;
-    data['company'] = company.toJson();
-    return data;
+  AllUsersApiResponseDto copyWith({
+    int? id,
+    String? name,
+    String? username,
+    String? email,
+    Address? address,
+    String? phone,
+    String? website,
+    Company? company,
+  }) {
+    return AllUsersApiResponseDto(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      username: username ?? this.username,
+      email: email ?? this.email,
+      address: address ?? this.address,
+      phone: phone ?? this.phone,
+      website: website ?? this.website,
+      company: company ?? this.company,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'username': username,
+      'email': email,
+      'address': address,
+      'phone': phone,
+      'website': website,
+      'company': company,
+    };
+  }
+
+  factory AllUsersApiResponseDto.fromMap(Map<String, dynamic> map) {
+    return AllUsersApiResponseDto(
+      id: map['id'] as int,
+      name: map['name'] as String,
+      username: map['username'] as String,
+      email: map['email'] as String,
+      address: map['address'] as Address,
+      phone: map['phone'] as String,
+      website: map['website'] as String,
+      company: map['company'] as Company,
+    );
   }
 }
 
 class Address {
-  String street = "";
-  String suite = "";
-  String city = "";
-  String zipcode = "";
-  Geo geo = Geo(lat: "", lng: "");
+  String street;
+  String suite;
+  String city;
+  String zipcode;
+  Geo geo;
 
   Address({
     required this.street,
@@ -71,63 +116,171 @@ class Address {
     required this.geo,
   });
 
-  Address.fromJson(Map<String, dynamic> addressJson) {
-    street = addressJson['street'];
-    suite = addressJson['suite'];
-    city = addressJson['city'];
-    zipcode = addressJson['zipcode'];
-    geo =
-        (addressJson['geo'] != null ? Geo.fromJson(addressJson['geo']) : null)!;
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Address &&
+          runtimeType == other.runtimeType &&
+          street == other.street &&
+          suite == other.suite &&
+          city == other.city &&
+          zipcode == other.zipcode &&
+          geo == other.geo);
+
+  @override
+  int get hashCode =>
+      street.hashCode ^
+      suite.hashCode ^
+      city.hashCode ^
+      zipcode.hashCode ^
+      geo.hashCode;
+
+  @override
+  String toString() {
+    return 'Address{ street: $street, suite: $suite, city: $city, zipcode: $zipcode, geo: $geo,}';
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['street'] = street;
-    data['suite'] = suite;
-    data['city'] = city;
-    data['zipcode'] = zipcode;
-    data['geo'] = geo.toJson();
-    return data;
+  Address copyWith({
+    String? street,
+    String? suite,
+    String? city,
+    String? zipcode,
+    Geo? geo,
+  }) {
+    return Address(
+      street: street ?? this.street,
+      suite: suite ?? this.suite,
+      city: city ?? this.city,
+      zipcode: zipcode ?? this.zipcode,
+      geo: geo ?? this.geo,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'street': street,
+      'suite': suite,
+      'city': city,
+      'zipcode': zipcode,
+      'geo': geo,
+    };
+  }
+
+  factory Address.fromMap(Map<String, dynamic> map) {
+    return Address(
+      street: map['street'] as String,
+      suite: map['suite'] as String,
+      city: map['city'] as String,
+      zipcode: map['zipcode'] as String,
+      geo: map['geo'] as Geo,
+    );
   }
 }
 
 class Geo {
-  String lat = "";
-  String lng = "";
+  String lat;
 
-  Geo({required this.lat, required this.lng});
+  String lng;
 
-  Geo.fromJson(Map<String, dynamic> geoJson) {
-    lat = geoJson['lat'];
-    lng = geoJson['lng'];
+  Geo({
+    required this.lat,
+    required this.lng,
+  });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Geo &&
+          runtimeType == other.runtimeType &&
+          lat == other.lat &&
+          lng == other.lng);
+
+  @override
+  int get hashCode => lat.hashCode ^ lng.hashCode;
+
+  @override
+  String toString() {
+    return 'Geo{ lat: $lat, lng: $lng,}';
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['lat'] = lat;
-    data['lng'] = lng;
-    return data;
+  Geo copyWith({
+    String? lat,
+    String? lng,
+  }) {
+    return Geo(
+      lat: lat ?? this.lat,
+      lng: lng ?? this.lng,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'lat': lat,
+      'lng': lng,
+    };
+  }
+
+  factory Geo.fromMap(Map<String, dynamic> map) {
+    return Geo(
+      lat: map['lat'] as String,
+      lng: map['lng'] as String,
+    );
   }
 }
 
 class Company {
-  String name = "";
-  String catchPhrase = "";
-  String bs = "";
+  String name;
+  String catchPhrase;
+  String bs;
 
-  Company({required this.name, required this.catchPhrase, required this.bs});
+  Company({
+    required this.name,
+    required this.catchPhrase,
+    required this.bs,
+  });
 
-  Company.fromJson(Map<String, dynamic> companyJson) {
-    name = companyJson['name'];
-    catchPhrase = companyJson['catchPhrase'];
-    bs = companyJson['bs'];
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Company &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          catchPhrase == other.catchPhrase &&
+          bs == other.bs);
+
+  @override
+  int get hashCode => name.hashCode ^ catchPhrase.hashCode ^ bs.hashCode;
+
+  @override
+  String toString() {
+    return 'Company{ name: $name, catchPhrase: $catchPhrase, bs: $bs,}';
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['name'] = name;
-    data['catchPhrase'] = catchPhrase;
-    data['bs'] = bs;
-    return data;
+  Company copyWith({
+    String? name,
+    String? catchPhrase,
+    String? bs,
+  }) {
+    return Company(
+      name: name ?? this.name,
+      catchPhrase: catchPhrase ?? this.catchPhrase,
+      bs: bs ?? this.bs,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'catchPhrase': catchPhrase,
+      'bs': bs,
+    };
+  }
+
+  factory Company.fromMap(Map<String, dynamic> map) {
+    return Company(
+      name: map['name'] as String,
+      catchPhrase: map['catchPhrase'] as String,
+      bs: map['bs'] as String,
+    );
   }
 }
